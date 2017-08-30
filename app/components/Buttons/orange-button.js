@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native';
+
+const boxWidth = Dimensions.get('window').width - 40;
 
 export default class OrangeButton extends Component {
   render() {
     const { title, route, action } = this.props;
     return (
-      <View style={styles.container}>
+      <View>
         <TouchableOpacity
           style={styles.orangeButton}
 				  onPress={ route ? () => action(route) : action}>
@@ -17,15 +19,11 @@ export default class OrangeButton extends Component {
 };
 
 const styles = StyleSheet.create({
-	container: {
-    alignItems: 'center',
-  },
   orangeButton: {
     backgroundColor: '#FF8C00',
-    width: '180%',
+    width: boxWidth,
     borderRadius: 5,
     padding: 15,
-    marginBottom: 10,
   },
   buttonText: {
     textAlign: 'center',

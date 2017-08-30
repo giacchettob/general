@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image, TextInput, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, Image, TextInput, TouchableOpacity, Dimensions, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 import HalfButton from '../components/Buttons/half-button';
@@ -10,63 +10,90 @@ import Home from './home';
 import SignUp from './signup';
 import ForgotPassword from './forgot-password';
 
+const windowHeight = Dimensions.get('window').height;
 const imageWidth = Dimensions.get('window').width / 2;
+const boxWidth = Dimensions.get('window').width - 40;
 
 class Login extends Component {
-  static navigationOptions = {
+  static navigationOptions =  {
    header: null,
-   backgroundColor: null,
   }
+
+  doLogin(navigate) {
+    navigate('Home')
+  }
+
   render() {
-    const { title, route, action } = this.props;
     const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
-        <Image source={require('../components/images/logo.png')} style={styles.image} />
-        <Text style={styles.title}>Title</Text>
-        <TextInput
-          placeholder="Email"
-          placeholderTextColor="rgba(255,255,255,0.7)"
-          autoCapitalize="none"
-          keyboardType="email-address"
-          returnKeyType="next"
-          style={styles.textInput}
-        />
-        <TextInput
-          placeholder="Senha"
-          placeholderTextColor="rgba(255,255,255,0.7)"
-          autoCapitalize="none"
-          returnKeyType="go"
-          secureTextEntry={true}
-          style={styles.textInput}
-        />
-        <View style={styles.halfButtonContainer}>
-          <HalfButton
-            title='Login'
-            action={navigate}
-            route='Home'
-          />
-          <HalfButton
-            title='Facebook'
-            action={navigate}
-            route='Home'
-          />
-        </View>
-        <View style={styles.orangeButtonContainer}>
-          <OrangeButton
-            title='Crie uma nova conta'
-            action={navigate}
-            route='SignUp'
-          />
-        </View>
-        <View>
-          <TextButton
-            title='Esqueci a senha'
-            action={navigate}
-            route='ForgotPassword'
-          />
-        </View>
-      </View>
+      <KeyboardAvoidingView behavior="padding">
+        <ScrollView
+          keyboardDismissMode="interactive"
+          showsVerticalScrollIndicator={false}>
+          
+          <View style={styles.container}>
+
+            <View>
+              <Image source={require('../components/images/logo.png')} style={styles.image} />
+            </View>
+
+            <View>
+              <Text style={styles.title}>Title</Text>
+            </View>
+            
+            <View>
+              <TextInput
+                placeholder="Email"
+                placeholderTextColor="rgba(255,255,255,0.7)"
+                autoCapitalize="none"
+                keyboardType="email-address"
+                returnKeyType="next"
+                onSubmitEditing={() => this.Password.focus()}
+                style={styles.textInput}
+              />
+              <TextInput
+                placeholder="Senha"
+                placeholderTextColor="rgba(255,255,255,0.7)"
+                autoCapitalize="none"
+                returnKeyType="go"
+                secureTextEntry={true}
+                ref={(password) => this.Password = password }
+                onSubmitEditing={() => this.doLogin(navigate)}
+                style={styles.textInput}
+              />
+            </View>
+
+            <View style={styles.halfButtonContainer}>
+              <HalfButton
+                title='Login'
+                onPress={() => this.doLogin(navigate)}
+              />
+              <HalfButton
+                title='Facebook'
+                onPress={() => this.doLogin(navigate)}
+              />  
+            </View>
+
+            <View>
+              <OrangeButton
+                title='Crie uma nova conta'
+                action={navigate}
+                route='SignUp'
+              />
+            </View>
+
+            <View>
+              <TextButton
+                title='Esqueci a senha'
+                action={navigate}
+                route='ForgotPassword'
+              />
+            </View>
+
+          </View>
+          
+        </ScrollView>
+      </KeyboardAvoidingView>
     );
   };
 };
@@ -81,6 +108,7 @@ export default StackNavigator({
 const styles = StyleSheet.create({
 	container: {
     flex: 1,
+    height: windowHeight,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -97,7 +125,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     backgroundColor: '#FFB459',
-    width: '90%',
+    width: boxWidth,
     borderRadius: 5,
     padding: 15,
     marginBottom: 10,
@@ -106,8 +134,6 @@ const styles = StyleSheet.create({
   },
   halfButtonContainer: {
     flexDirection: 'row',
-  },
-  orangeButtonContainer: {
-    flex: 0.1,
+    alignSelf: 'center',
   },
 });

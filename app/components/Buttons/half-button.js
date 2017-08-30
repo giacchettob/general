@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native';
+
+const boxWidth = Dimensions.get('window').width / 2 - 25;
 
 export default class HalfButton extends Component {
   render() {
-    const { title, route, action } = this.props;
+    const { title, onPress } = this.props;
     return (
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.halfButton}
-				  onPress={ route ? () => action(route) : action}>
+				  onPress={onPress}>
 				  <Text style={styles.buttonText}>{title}</Text>
 			</TouchableOpacity>
       </View>
@@ -18,12 +20,12 @@ export default class HalfButton extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-    flex: 1,
-    alignItems: 'center',
+    paddingRight: 5,
+    paddingLeft: 5,
   },
   halfButton: {
     backgroundColor: '#FF8C00',
-    width: '80%',
+    width: boxWidth,
     borderRadius: 5,
     padding: 15,
     marginBottom: 10,

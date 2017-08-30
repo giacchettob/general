@@ -5,7 +5,7 @@ export default class TextButton extends Component {
   render() {
     const { title, route, action } = this.props;
     return (
-      <View style={styles.container}>
+      <View>
         <TouchableOpacity
           style={styles.textButton}
 				  onPress={ route ? () => action(route) : action}>
@@ -17,11 +17,8 @@ export default class TextButton extends Component {
 };
 
 const styles = StyleSheet.create({
-	container: {
-    alignItems: 'center',
-  },
   textButton: {
-    marginTop: 50,
+    marginTop: 10,
   },
   buttonText: {
     fontWeight: '500',
