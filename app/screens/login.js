@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image, TextInput, TouchableOpacity, Dimensions, KeyboardAvoidingView, ScrollView } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  Dimensions,
+  KeyboardAvoidingView,
+  ScrollView,
+} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 import HalfButton from '../components/Buttons/half-button';
@@ -15,11 +25,11 @@ const imageWidth = Dimensions.get('window').width / 2;
 const boxWidth = Dimensions.get('window').width - 40;
 
 class Login extends Component {
-  static navigationOptions =  {
+  static navigationOptions = {
    header: null,
   }
 
-  doLogin(navigate) {
+  logIn(navigate) {
     navigate('Home')
   }
 
@@ -58,7 +68,7 @@ class Login extends Component {
                 returnKeyType="go"
                 secureTextEntry={true}
                 ref={(password) => this.Password = password }
-                onSubmitEditing={() => this.doLogin(navigate)}
+                onSubmitEditing={() => this.logIn(navigate)}
                 style={styles.textInput}
               />
             </View>
@@ -66,11 +76,11 @@ class Login extends Component {
             <View style={styles.halfButtonContainer}>
               <HalfButton
                 title='Login'
-                onPress={() => this.doLogin(navigate)}
+                onPress={() => this.logIn(navigate)}
               />
               <HalfButton
                 title='Facebook'
-                onPress={() => this.doLogin(navigate)}
+                onPress={() => this.logIn(navigate)}
               />  
             </View>
 
