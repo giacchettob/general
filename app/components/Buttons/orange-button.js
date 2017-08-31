@@ -3,20 +3,22 @@ import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-nati
 
 const boxWidth = Dimensions.get('window').width - 40;
 
-export default class OrangeButton extends Component {
+class OrangeButton extends Component {
   render() {
-    const { title, route, action } = this.props;
+    const { title, onPress } = this.props;
     return (
       <View>
         <TouchableOpacity
           style={styles.orangeButton}
-				  onPress={ route ? () => action(route) : action}>
+				  onPress={onPress}>
 				  <Text style={styles.buttonText}>{title}</Text>
 			</TouchableOpacity>
       </View>
     );
   };
 };
+
+export default OrangeButton;
 
 const styles = StyleSheet.create({
   orangeButton: {

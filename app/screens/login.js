@@ -5,7 +5,6 @@ import {
   Text,
   Image,
   TextInput,
-  TouchableOpacity,
   Dimensions,
   KeyboardAvoidingView,
   ScrollView,
@@ -19,6 +18,7 @@ import TextButton from '../components/Buttons/text-button';
 import Home from './home';
 import SignUp from './signup';
 import ForgotPassword from './forgot-password';
+import ForgotPasswordSent from './forgot-password-sent';
 
 const windowHeight = Dimensions.get('window').height;
 const imageWidth = Dimensions.get('window').width / 2;
@@ -31,6 +31,14 @@ class Login extends Component {
 
   logIn(navigate) {
     navigate('Home')
+  }
+
+  signUp(navigate) {
+    navigate('SignUp')
+  }
+
+  forgotPass(navigate) {
+    navigate('ForgotPassword')
   }
 
   render() {
@@ -87,16 +95,14 @@ class Login extends Component {
             <View>
               <OrangeButton
                 title='Crie uma nova conta'
-                action={navigate}
-                route='SignUp'
+                onPress={() => this.signUp(navigate)}
               />
             </View>
 
             <View>
               <TextButton
                 title='Esqueci a senha'
-                action={navigate}
-                route='ForgotPassword'
+                onPress={() => this.forgotPass(navigate)}
               />
             </View>
 
@@ -112,7 +118,8 @@ export default StackNavigator({
 	Login: { screen: Login },
   Home: { screen: Home },
   SignUp: { screen: SignUp },
-  ForgotPassword: { screen: ForgotPassword }
+  ForgotPassword: { screen: ForgotPassword },
+  ForgotPasswordSent: { screen: ForgotPasswordSent }
 });
 
 const styles = StyleSheet.create({

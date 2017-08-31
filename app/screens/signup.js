@@ -113,7 +113,7 @@ class SignUp extends Component {
 };
 
 export default StackNavigator({
-  SignUp: { screen: SignUp },
+  SignUp: { screen: SignUp }
 });
 
 const styles = StyleSheet.create({
