@@ -6,10 +6,10 @@ import {
   Image,
   TextInput,
   Dimensions,
-  KeyboardAvoidingView,
   ScrollView,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import HalfButton from '../components/Buttons/half-button';
 import OrangeButton from '../components/Buttons/orange-button';
@@ -17,6 +17,8 @@ import TextButton from '../components/Buttons/text-button';
 
 import Home from './home';
 import SignUp from './signup';
+import FirstScreen from './first-screen';
+import SecondScreen from './second-screen';
 import ForgotPassword from './forgot-password';
 import ForgotPasswordSent from './forgot-password-sent';
 
@@ -44,15 +46,20 @@ class Login extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <KeyboardAvoidingView behavior="padding">
+      <KeyboardAwareScrollView
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        contentContainerStyle={styles.container}
+        scrollEnabled={false}
+      >
         <ScrollView
           keyboardDismissMode="interactive"
-          showsVerticalScrollIndicator={false}>
+          showsVerticalScrollIndicator={false}
+        >
           
           <View style={styles.container}>
 
             <View>
-              <Image source={require('../components/images/logo.png')} style={styles.image} />
+              <Image source={require('../components/images/logo.png')} style={styles.logo} />
             </View>
 
             <View>
@@ -109,7 +116,7 @@ class Login extends Component {
           </View>
           
         </ScrollView>
-      </KeyboardAvoidingView>
+      </KeyboardAwareScrollView>
     );
   };
 };
@@ -117,6 +124,8 @@ class Login extends Component {
 export default StackNavigator({
 	Login: { screen: Login },
   Home: { screen: Home },
+  FirstScreen: { screen: FirstScreen },
+  SecondScreen: { screen: FirstScreen },
   SignUp: { screen: SignUp },
   ForgotPassword: { screen: ForgotPassword },
   ForgotPasswordSent: { screen: ForgotPasswordSent }
@@ -129,7 +138,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  image: {
+  logo: {
     width: imageWidth,
     height: imageWidth,
     marginBottom: 10,

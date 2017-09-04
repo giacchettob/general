@@ -5,10 +5,10 @@ import {
   Text,
   TextInput,
   Dimensions,
-  KeyboardAvoidingView,
   ScrollView,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import HalfButton from '../components/Buttons/half-button';
 
@@ -34,7 +34,11 @@ class SignUp extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <KeyboardAvoidingView behavior="padding">
+      <KeyboardAwareScrollView
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        contentContainerStyle={styles.container}
+        scrollEnabled={false}
+      >
         <ScrollView
           keyboardDismissMode="interactive"
           showsVerticalScrollIndicator={false}>
@@ -107,7 +111,7 @@ class SignUp extends Component {
           </View>
 
         </ScrollView>
-      </KeyboardAvoidingView>
+      </KeyboardAwareScrollView>
     );
   };
 };

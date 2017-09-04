@@ -1,27 +1,28 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import React from 'react';
+import { DrawerNavigator } from 'react-navigation';
 
-export default class Home extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Home</Text>
-      </View>
-    );
-  };
-};
+import FirstScreen from './first-screen';
+import SecondScreen from './second-screen';
 
-const styles = StyleSheet.create({
-	container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+const Home = DrawerNavigator(
+  {
+    First: {
+      path: '/',
+      screen: FirstScreen,
+    },
+    Second: {
+      path: '/',
+      screen: SecondScreen,
+    },
   },
-  title: {
-    color: '#E87F00',
-    fontSize: 24,
-    fontWeight: '700',
-    marginBottom: 10,
+  {
+    initialRouteName: 'First',
+    drawerPosition: 'left',
+    drawerWidth: 200,
+    contentOptions: {
+      activeTintColor: 'red',
+    },
   },
-});
+);
+
+export default Home;

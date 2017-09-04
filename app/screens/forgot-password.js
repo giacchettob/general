@@ -5,7 +5,6 @@ import {
   Text,
   TextInput,
   Dimensions,
-  KeyboardAvoidingView,
   ScrollView,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
@@ -34,44 +33,42 @@ class ForgotPassword extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <KeyboardAvoidingView behavior="padding">
-        <ScrollView
-          keyboardDismissMode="interactive"
-          showsVerticalScrollIndicator={false}>
+      <ScrollView
+        keyboardDismissMode="interactive"
+        showsVerticalScrollIndicator={false}>
           
-          <View style={styles.container}>
+        <View style={styles.container}>
 
-            <View style={styles.titleContainer}>
-              <Text style={styles.title}>Esqueci a senha</Text>
-            </View>
-
-            <View style={styles.textInputContainer}>
-              <TextInput
-                placeholder="Email"
-                placeholderTextColor="rgba(255,255,255,0.7)"
-                autoCapitalize="none"
-                keyboardType="email-address"
-                returnKeyType="go"
-                onSubmitEditing={() => this.passSent(navigate)}
-                style={styles.textInput}
-              />
-            </View>
-
-            <View style={styles.halfButtonContainer}>
-              <HalfButton
-                title='Cancelar'
-                onPress={() => this.logIn(navigate)}
-              />
-              <HalfButton
-                title='Enviar'
-                onPress={() => this.passSent(navigate)}
-              />  
-            </View>
-
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>Esqueci a senha</Text>
           </View>
 
-        </ScrollView>
-      </KeyboardAvoidingView>
+          <View style={styles.textInputContainer}>
+            <TextInput
+              placeholder="Email"
+              placeholderTextColor="rgba(255,255,255,0.7)"
+              autoCapitalize="none"
+              keyboardType="email-address"
+              returnKeyType="go"
+              onSubmitEditing={() => this.passSent(navigate)}
+              style={styles.textInput}
+            />
+          </View>
+
+          <View style={styles.halfButtonContainer}>
+            <HalfButton
+              title='Cancelar'
+              onPress={() => this.logIn(navigate)}
+            />
+            <HalfButton
+              title='Enviar'
+              onPress={() => this.passSent(navigate)}
+            />  
+          </View>
+
+        </View>
+
+      </ScrollView>
     );
   };
 };

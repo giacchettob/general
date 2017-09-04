@@ -4,7 +4,6 @@ import {
   View,
   Text,
   Dimensions,
-  KeyboardAvoidingView,
   ScrollView,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
@@ -27,32 +26,30 @@ class ForgotPasswordSent extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <KeyboardAvoidingView behavior="padding">
-        <ScrollView
-          keyboardDismissMode="interactive"
-          showsVerticalScrollIndicator={false}>
+      <ScrollView
+        keyboardDismissMode="interactive"
+        showsVerticalScrollIndicator={false}>
           
-          <View style={styles.container}>
+        <View style={styles.container}>
 
-            <View>
-              <Text style={styles.title}>Recuperar a senha</Text>
-            </View>
-            
-            <View>
-              <Text style={styles.text}>Foi enviado um Email.</Text>
-            </View>
-              
-            <View>
-              <OrangeButton
-                title='Login'
-                onPress={() => this.mainPage(navigate)}
-              />
-            </View>
-
+          <View>
+            <Text style={styles.title}>Recuperar a senha</Text>
           </View>
+            
+          <View>
+            <Text style={styles.text}>Foi enviado um Email.</Text>
+          </View>
+              
+          <View>
+            <OrangeButton
+              title='Login'
+              onPress={() => this.mainPage(navigate)}
+            />
+          </View>
+
+        </View>
           
-        </ScrollView>
-      </KeyboardAvoidingView>
+      </ScrollView>
     );
   };
 };
